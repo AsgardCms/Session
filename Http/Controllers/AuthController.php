@@ -59,4 +59,11 @@ class AuthController extends Controller
 
         return Redirect::route('register');
     }
+
+    public function getLogout()
+    {
+        Sentinel::logout();
+
+        return Redirect::route('login');
+    }
 }
