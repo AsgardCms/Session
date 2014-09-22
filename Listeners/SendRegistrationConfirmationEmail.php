@@ -17,7 +17,7 @@ class SendRegistrationConfirmationEmail extends EventListener
         ];
         Mail::queue('session::emails.welcome',$data,
             function ($m) use ($user) {
-                $m->to($user->email)->subject('Welcome on your SocialDashy.');
+                $m->to($user->email)->subject('Welcome.');
             }
         );
     }
