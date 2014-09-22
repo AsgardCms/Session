@@ -3,7 +3,6 @@
 use Illuminate\Routing\Controller;
 use Cartalyst\Sentinel\Checkpoints\NotActivatedException;
 use Cartalyst\Sentinel\Checkpoints\ThrottlingException;
-use Cartalyst\Sentinel\Laravel\Facades\Activation;
 use Cartalyst\Sentinel\Laravel\Facades\Sentinel;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\View;
@@ -13,10 +12,23 @@ use Modules\Session\Exceptions\InvalidOrExpiredResetCode;
 use Modules\Session\Exceptions\UserNotFoundException;
 use Modules\Session\Http\Requests\LoginRequest;
 use Modules\Session\Http\Requests\RegisterRequest;
+use Modules\Session\Http\Requests\ResetCompleteRequest;
+use Modules\Session\Http\Requests\ResetRequest;
 
 class AuthController extends Controller
 {
     use CommanderTrait;
+
+    public function __construct()
+    {
+        $this->beforeFilter(
+            'guest',
+            array(
+                'only' =>
+                    array('getLogin', 'getRegister')
+            )
+        );
+    }
 
     public function getLogin()
     {
@@ -63,6 +75,53 @@ class AuthController extends Controller
     public function getLogout()
     {
         Sentinel::logout();
+
+        return Redirect::route('login');
+    }
+
+    public function getReset()
+    {
+        return View::make('session::public.reset.begin');
+    }
+
+    public function postReset(ResetRequest $request)
+    {
+        try {
+            $this->execute('Modules\Session\Commands\BeginResetProcessCommand', $request->all());
+        } catch (UserNotFoundException $e) {
+            Flash::error('No user with that email address belongs in our system.');
+
+            return Redirect::back()->withInput();
+        }
+
+        Flash::success('Check your email to reset your password.');
+
+        return Redirect::route('reset');
+    }
+
+    public function getResetComplete()
+    {
+        return View::make('session::public.reset.complete');
+    }
+
+    public function postResetComplete($userId, $code, ResetCompleteRequest $request)
+    {
+        try {
+            $this->execute(
+                'Modules\Session\Commands\CompleteResetProcessCommand',
+                array_merge($request->all(), ['userId' => $userId, 'code' => $code])
+            );
+        } catch (UserNotFoundException $e) {
+            Flash::error('The user no longer exists.');
+
+            return Redirect::back()->withInput();
+        } catch(InvalidOrExpiredResetCode $e) {
+            Flash::error('Invalid or expired reset code.');
+
+            return Redirect::back()->withInput();
+        }
+
+        Flash::success('Password has been reset. You can now login with your new password.');
 
         return Redirect::route('login');
     }

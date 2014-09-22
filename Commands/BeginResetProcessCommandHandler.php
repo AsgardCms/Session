@@ -6,20 +6,9 @@ use Illuminate\Support\Facades\Event;
 use Laracasts\Commander\CommandHandler;
 use Modules\Session\Events\UserHasBegunResetProcess;
 use Modules\Session\Exceptions\UserNotFoundException;
-use Modules\Session\Forms\ResetBeginForm;
 
 class BeginResetProcessCommandHandler implements CommandHandler
 {
-    /**
-     * @var ResetBeginForm
-     */
-    private $form;
-
-    public function __construct(ResetBeginForm $form)
-    {
-        $this->form = $form;
-    }
-
     /**
      * Handle the command
      *
@@ -29,8 +18,6 @@ class BeginResetProcessCommandHandler implements CommandHandler
      */
     public function handle($command)
     {
-        $this->form->validate((array) $command);
-
         $user = $this->findUser((array) $command);
 
         $reminder = Reminder::exists($user) ?: Reminder::create($user);

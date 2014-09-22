@@ -4,20 +4,10 @@ use Cartalyst\Sentinel\Laravel\Facades\Reminder;
 use Cartalyst\Sentinel\Laravel\Facades\Sentinel;
 use Laracasts\Commander\CommandHandler;
 use Modules\Session\Exceptions\UserNotFoundException;
-use Modules\Session\Forms\ResetCompleteForm;
 
 class CompleteResetProcessCommandHandler implements CommandHandler
 {
     protected $input;
-    /**
-     * @var ResetCompleteForm
-     */
-    private $form;
-
-    public function __construct(ResetCompleteForm $form)
-    {
-        $this->form = $form;
-    }
 
     /**
      * Handle the command
