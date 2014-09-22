@@ -8,11 +8,6 @@ Register | @parent
 @include('flash::message')
 {!! Form::open(array('route' => 'register.post')) !!}
     <div class="body bg-gray">
-        <div class="form-group{{ $errors->has('username') ? ' has-error has-feedback' : '' }}">
-            {!! Form::label('username', 'Username:') !!}
-            {!! Form::text('username', Input::old('username'), ['class' => 'form-control', 'placeholder' => 'Username']) !!}
-            {!! $errors->first('username', '<span class="help-block">:message</span>') !!}
-        </div>
         <div class="form-group{{ $errors->has('email') ? ' has-error has-feedback' : '' }}">
             {!! Form::label('email', 'Email:') !!}
             {!! Form::text('email', Input::old('email'), ['class' => 'form-control', 'placeholder' => 'Email']) !!}
