@@ -5,6 +5,9 @@ This module is responsible for handling the user sign in, sign up, forgot passwo
 
 ## Installation
 
+This module is loading the the [Pingpong-labs/module](https://github.com/pingpong-labs/modules) package. One way of installing it, is with the `php artisan module:install nWidart-Modules/Session` command.
+
+
 ### Package dependencies
 
 ``` json
@@ -31,9 +34,9 @@ Aliases key:
 
 ``` php
 'Activation' => 'Cartalyst\Sentinel\Laravel\Facades\Activation',
-        'Reminder'   => 'Cartalyst\Sentinel\Laravel\Facades\Reminder',
-        'Sentinel'   => 'Cartalyst\Sentinel\Laravel\Facades\Sentinel',
-        'Flash' => 'Laracasts\Flash\Flash',
+'Reminder'   => 'Cartalyst\Sentinel\Laravel\Facades\Reminder',
+'Sentinel'   => 'Cartalyst\Sentinel\Laravel\Facades\Sentinel',
+'Flash' => 'Laracasts\Flash\Flash',
 ```
 
 
