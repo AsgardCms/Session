@@ -26,6 +26,7 @@ Providers key:
 'Cartalyst\Sentinel\Laravel\SentinelServiceProvider',
 'Laracasts\Commander\CommanderServiceProvider',
 'Laracasts\Flash\FlashServiceProvider',
+'Modules\Session\Providers\SessionFiltersServiceProvider',
 
 ```
 
