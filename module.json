@@ -2,14 +2,12 @@
     "name": "Session",
     "alias": "session",
     "description": "The module responsible for handling the users.",
-    "keywords": [
-
-    ],
+    "keywords": [],
     "require": {
-        "cartalyst/sentinel": "1.0.*",
-        "laracasts/commander": "dev-master",
-        "laracasts/flash": "~1.0",
-        "laracasts/presenter": "0.2.*"
+        "cartalyst\/sentinel": "1.0.*",
+        "laracasts\/commander": "dev-master",
+        "laracasts\/flash": "~1.0",
+        "laracasts\/presenter": "0.2.*"
     },
     "active": 1
 }
