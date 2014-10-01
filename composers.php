@@ -5,3 +5,5 @@ View::composer(['core::partials.sidebar-nav', 'core::partials.top-nav'], functio
 {
     $view->with('user', Sentinel::check());
 });
+
+Event::listen('Modules\User\Events\RegisterSidebarMenuItemEvent', 'Modules\Blog\Listeners\SidebarNavigationListener');
