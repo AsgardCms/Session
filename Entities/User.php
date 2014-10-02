@@ -17,9 +17,4 @@ class User extends SentryUser
     ];
 
     protected $presenter = 'Modules\Session\Presenters\UserPresenter';
-
-    public function setPasswordAttribute($password)
-    {
-        $this->attributes['password'] = Hash::make($password);
-    }
 }
