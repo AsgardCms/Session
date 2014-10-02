@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Facades\Session;
 
-class DashboardFilter
+class AdminFilter
 {
     public function filter()
     {

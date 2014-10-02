@@ -2,33 +2,58 @@
 
 use Illuminate\Support\ServiceProvider;
 
-class SessionServiceProvider extends ServiceProvider {
+class SessionServiceProvider extends ServiceProvider
+{
+    /**
+     * Indicates if loading of the provider is deferred.
+     *
+     * @var bool
+     */
+    protected $defer = false;
 
 	/**
-	 * Indicates if loading of the provider is deferred.
+	 * The filters base class name.
 	 *
-	 * @var bool
+	 * @var array
 	 */
-	protected $defer = false;
+	protected $filters = [
+		'Session' => [
+			'auth.admin' => 'AdminFilter',
+			'auth.guest' => 'GuestFilter'
+		]
+	];
 
-	/**
-	 * Register the service provider.
-	 *
-	 * @return void
-	 */
-	public function register()
+    /**
+     * Register the service provider.
+     *
+     * @return void
+     */
+    public function register()
+    {
+		$this->app->booted(function ($app) {
+			$this->registerFilters($app['router']);
+		});
+    }
+
+    /**
+     * Get the services provided by the provider.
+     *
+     * @return array
+     */
+    public function provides()
+    {
+        return array();
+    }
+
+	private function registerFilters($router)
 	{
-		//
-	}
+		foreach ($this->filters as $module => $filters) {
+			foreach ($filters as $name => $filter) {
+				$class = "Modules\\{$module}\\Http\\Filters\\{$filter}";
 
-	/**
-	 * Get the services provided by the provider.
-	 *
-	 * @return array
-	 */
-	public function provides()
-	{
-		return array();
+				$router->filter($name, $class);
+			}
+		}
 	}
 
 }
