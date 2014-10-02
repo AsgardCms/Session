@@ -26,8 +26,8 @@ class SentryUserSeedTableSeeder extends Seeder
             ]
         );
         // Activate the admin directly
-        $code = Activation::create($user);
-        Activation::complete($user, $code);
+        $activation = Activation::create($user);
+        Activation::complete($user, $activation->code);
 
         // Find the group using the group id
         $adminGroup = Sentinel::findRoleBySlug('admin');
