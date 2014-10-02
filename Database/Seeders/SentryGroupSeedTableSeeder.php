@@ -37,7 +37,13 @@ class SentryGroupSeedTableSeeder extends Seeder
         $group = Sentinel::findRoleBySlug('admin');
         $group->permissions = [
             'dashboard.index' => true,
-            'admin.index' => true,
+            'workbench.index' => true,
+            'workbench.generate' => true,
+            'workbench.migrate' => true,
+            'workbench.install' => true,
+            'workbench.seed' => true,
+            'modules.index' => true,
+            'modules.store' => true,
         ];
         $group->save();
 
