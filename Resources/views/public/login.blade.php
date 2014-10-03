@@ -21,7 +21,7 @@ Login | @parent
             {!! $errors->first('password', '<span class="help-block">:message</span>') !!}
         </div>
         <div class="form-group">
-            <input type="checkbox" name="remember_me"/> Remember me
+            <input type="checkbox" name="remember_me" id="remember_me"/> <label for="remember_me">Remember me</label>
         </div>
     </div>
     <div class="footer">
