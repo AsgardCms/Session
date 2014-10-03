@@ -2,7 +2,6 @@
 
 use Cartalyst\Sentinel\Users\EloquentUser as SentryUser;
 use Laracasts\Presenter\PresentableTrait;
-use Illuminate\Support\Facades\Hash;
 
 class User extends SentryUser
 {
