@@ -10,5 +10,8 @@
         "laracasts\/presenter": "0.2.*",
         "guzzlehttp/guzzle": "4.2.2"
     },
-    "active": 1
+    "active": 1,
+    "providers": [
+        "Modules\\Session\\Providers\\SessionServiceProvider"
+    ]
 }
