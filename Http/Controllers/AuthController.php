@@ -1,6 +1,5 @@
 <?php namespace Modules\Session\Http\Controllers;
 
-use Illuminate\Routing\Controller;
 use Cartalyst\Sentinel\Checkpoints\NotActivatedException;
 use Cartalyst\Sentinel\Checkpoints\ThrottlingException;
 use Cartalyst\Sentinel\Laravel\Facades\Sentinel;
@@ -15,19 +14,24 @@ use Modules\Session\Http\Requests\RegisterRequest;
 use Modules\Session\Http\Requests\ResetCompleteRequest;
 use Modules\Session\Http\Requests\ResetRequest;
 
-class AuthController extends Controller
+/**
+ * Class AuthController
+ * @package Modules\Session\Http\Controllers
+ * @Before("guest", on={"getLogin", "getRegister"})
+ */
+class AuthController
 {
     use CommanderTrait;
 
     public function __construct()
     {
-        $this->beforeFilter(
-            'guest',
-            array(
-                'only' =>
-                    array('getLogin', 'getRegister')
-            )
-        );
+//        $this->beforeFilter(
+//            'guest',
+//            array(
+//                'only' =>
+//                    array('getLogin', 'getRegister')
+//            )
+//        );
     }
 
     public function getLogin()
