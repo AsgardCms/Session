@@ -15,9 +15,8 @@ use Modules\Session\Http\Requests\ResetCompleteRequest;
 use Modules\Session\Http\Requests\ResetRequest;
 
 /**
- * Class AuthController
- * @package Modules\Session\Http\Controllers
- * @Before("guest", on={"getLogin", "getRegister"})
+ * @Controller()
+ * @Before("auth.guest", on={"getLogin", "getRegister"})
  */
 class AuthController
 {
@@ -25,13 +24,6 @@ class AuthController
 
     public function __construct()
     {
-//        $this->beforeFilter(
-//            'guest',
-//            array(
-//                'only' =>
-//                    array('getLogin', 'getRegister')
-//            )
-//        );
     }
 
     public function getLogin()
