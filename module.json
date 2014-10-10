@@ -3,7 +3,7 @@
     "alias": "session",
     "description": "The module responsible for handling the users.",
     "keywords": [],
-    "active": 1,
+    "active": 0,
     "providers": [
         "Modules\\Session\\Providers\\SessionServiceProvider"
     ]
