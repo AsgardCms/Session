@@ -18,7 +18,6 @@ class SessionServiceProvider extends ServiceProvider
 	 */
 	protected $filters = [
 		'Session' => [
-			'auth.admin' => 'AdminFilter',
 			'auth.guest' => 'GuestFilter'
 		]
 	];
