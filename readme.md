@@ -1,3 +1,5 @@
+**Abandoned** This module has been merge with the [User Module](https://github.com/nWidart-Modules/User).
+
 # Session module
 
 This module is responsible for handling the user sign in, sign up, forgot password.
